@@ -1,0 +1,16 @@
+{
+    "name": "woodlsy/notice",
+    "description": "SMS APP notice",
+    "type": "library",
+    "require": {
+        "php": ">=7.0.0",
+        "woodlsy/http-client": ">=0.1"
+    },
+    "license": "MIT",
+    "minimum-stability": "dev",
+	"autoload": {
+        "psr-4": {
+            "woodlsy\\notice\\": "src/"
+        }
+    }
+}
