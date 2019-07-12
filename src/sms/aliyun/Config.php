@@ -1,4 +1,5 @@
 <?php
+
 namespace woodlsy\notice\sms\aliyun;
 
 class Config
@@ -38,13 +39,13 @@ class Config
     private function setPublicParams()
     {
         $this->params = [
-            'AccessKeyId' => $this->accessKeyId,
-            'Format' => 'json',
-            'SignatureMethod' => $this->signatureMethod,
-            'SignatureNonce' => uniqid('', true),
+            'AccessKeyId'      => $this->accessKeyId,
+            'Format'           => 'json',
+            'SignatureMethod'  => $this->signatureMethod,
+            'SignatureNonce'   => uniqid('', true),
             'SignatureVersion' => $this->signatureVersion,
-            'Timestamp' => $this->timestamp,
-            'Version' => $this->version,
+            'Timestamp'        => $this->timestamp,
+            'Version'          => $this->version,
         ];
     }
 

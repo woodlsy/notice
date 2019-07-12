@@ -1,4 +1,5 @@
 <?php
+
 namespace woodlsy\notice\sms\aliyun;
 
 use woodlsy\httpClient\HttpCurl;
@@ -18,14 +19,14 @@ class AliyunSendSms extends Config
      */
     public function send(string $mobile, string $templateCode, string $templateParam, string $signName)
     {
-        $this->params['Action'] = 'SendSms';
-        $this->params['PhoneNumbers'] = $mobile;
-        $this->params['SignName'] = $signName;
-        $this->params['TemplateCode'] = $templateCode;
+        $this->params['Action']        = 'SendSms';
+        $this->params['PhoneNumbers']  = $mobile;
+        $this->params['SignName']      = $signName;
+        $this->params['TemplateCode']  = $templateCode;
         $this->params['TemplateParam'] = $templateParam;
-        $this->params['Signature'] = $this->sign($this->params, 'POST');
+        $this->params['Signature']     = $this->sign($this->params, 'POST');
 
-        return (new HttpCurl())->setUrl($this->sendSmsUrl)->setData($this->params)->get();
+        return (new HttpCurl())->setUrl($this->sendSmsUrl)->setData($this->params)->post();
     }
 
     /**
@@ -37,7 +38,7 @@ class AliyunSendSms extends Config
      */
     public function setAccessKey(string $accessKeyId, string $accessKeySecret)
     {
-        $this->accessKeyId = $accessKeyId;
+        $this->accessKeyId     = $accessKeyId;
         $this->accessKeySecret = $accessKeySecret;
     }
 
@@ -52,9 +53,9 @@ class AliyunSendSms extends Config
     protected function sign(array $params, string $method) : string
     {
         ksort($params);
-        $params = http_build_query($params);
-        $content =$method.'&%2F&'.rawurlencode($params);
+        $params  = http_build_query($params);
+        $content = $method . '&%2F&' . rawurlencode($params);
 
-        return base64_encode(hash_hmac('sha1', $content, $this->accessKeySecret.'&', true));
+        return base64_encode(hash_hmac('sha1', $content, $this->accessKeySecret . '&', true));
     }
 }

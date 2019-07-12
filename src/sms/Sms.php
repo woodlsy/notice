@@ -1,10 +1,28 @@
 <?php
+
 namespace woodlsy\notice\sms;
 
 use woodlsy\notice\sms\aliyun\AliyunSendSms;
 
 class Sms
 {
+    public $obj = null;
+
+    /**
+     * 设置密钥
+     *
+     * @author woodlsy
+     * @param string $accessKeyId
+     * @param string $accessKeySecret
+     * @return $this
+     */
+    public function setAliyunAccessKey(string $accessKeyId, string $accessKeySecret)
+    {
+        $this->obj = (new AliyunSendSms());
+        $this->obj->setAccessKey($accessKeyId, $accessKeySecret);
+        return $this;
+    }
+
     /**
      * 发送短信
      *
@@ -13,23 +31,10 @@ class Sms
      * @param string $templateCode
      * @param string $templateParam
      * @param string $signName
-     * @return string
-     * @throws \woodlsy\httpClient\HttpClientException
+     * @return mixed
      */
     public function aliyunSmsSend(string $mobile, string $templateCode, string $templateParam, string $signName)
     {
-        return (new AliyunSendSms())->send($mobile, $templateCode, $templateParam, $signName);
-    }
-
-    /**
-     * 设置密钥
-     *
-     * @author woodlsy
-     * @param string $accessKeyId
-     * @param string $accessKeySecret
-     */
-    public function setAccessKey(string $accessKeyId, string $accessKeySecret)
-    {
-        (new AliyunSendSms())->setAccessKey($accessKeyId, $accessKeySecret);
+        return $this->obj->send($mobile, $templateCode, $templateParam, $signName);
     }
 }
