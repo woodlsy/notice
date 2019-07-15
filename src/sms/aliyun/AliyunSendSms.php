@@ -40,6 +40,8 @@ class AliyunSendSms extends Config
     {
         $this->accessKeyId     = $accessKeyId;
         $this->accessKeySecret = $accessKeySecret;
+
+        $this->setPublicParams();
     }
 
     /**

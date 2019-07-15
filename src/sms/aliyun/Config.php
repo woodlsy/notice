@@ -36,7 +36,7 @@ class Config
      *
      * @author woodlsy
      */
-    private function setPublicParams()
+    protected function setPublicParams()
     {
         $this->params = [
             'AccessKeyId'      => $this->accessKeyId,
