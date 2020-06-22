@@ -26,7 +26,9 @@ class AliyunSendSms extends Config
         $this->params['TemplateParam'] = $templateParam;
         $this->params['Signature']     = $this->sign($this->params, 'POST');
 
-        return (new HttpCurl())->setUrl($this->sendSmsUrl)->setData($this->params)->post();
+        $curl = (new HttpCurl())->setUrl($this->sendSmsUrl)->setData($this->params);
+        $curl->post();
+        return $curl->getResult();
     }
 
     /**
