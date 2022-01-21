@@ -4,7 +4,7 @@
     "type": "library",
     "require": {
         "php": ">=7.0.0",
-        "woodlsy/http-client": ">=0.1"
+        "woodlsy/http-client": "*"
     },
     "license": "MIT",
     "minimum-stability": "dev",
